@@ -48,9 +48,24 @@ class QuestionMutation(graphene.Mutation):
         # Notice we return an instance of this mutation
         return QuestionMutation(question=question)
 
+class QuestionCreateMutation(graphene.Mutation):
+    class Arguments:
+        title = graphene.String(required=True)
+        text = graphene.String()
+
+    question = graphene.Field(QuestionType)
+
+    @classmethod
+    def mutate(cls, root, info, text, title):
+        question = Question.objects.create(
+            text=text,
+            title=title
+        )
+        return QuestionCreateMutation(question=question)
+
 
 class Mutation(graphene.ObjectType):
     update_question = QuestionMutation.Field()
-    create_question = 
+    create_question = QuestionCreateMutation.Field()
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
