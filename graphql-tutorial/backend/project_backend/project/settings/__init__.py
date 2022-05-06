@@ -6,6 +6,10 @@ from dotenv import load_dotenv
 dotenv_location = os.path.join('./', '.env')
 load_dotenv(dotenv_path=dotenv_location)
 
+import django
+from django.utils.encoding import force_str
+django.utils.encoding.force_text = force_str
+
 from .development import *  # noqa: E402, F403
 # For security reasons the default configuration 'project.settings' is development.
 # The goal is to provide a safe default to avoid accidentally writing to Production environment.

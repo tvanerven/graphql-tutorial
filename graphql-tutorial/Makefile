@@ -21,5 +21,6 @@ startbg: ## Start project running in dettached mode - background.
 stop: ## Stop the running project.
 	@docker-compose stop
 requirements: ## Update requirements.txt file
-	poetry export -v -o project/backend/requirements.txt
-
+	poetry export -v -o graphql-tutorial/backend/requirements.txt
+fixtures:
+	@docker-compose exec backend python manage.py loaddata ingredients

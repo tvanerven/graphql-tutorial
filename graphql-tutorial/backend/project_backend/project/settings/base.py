@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     # 3rd party apps
     'corsheaders',
     'rest_framework',
+    'graphene_django',
 
     # Local apps
     'main.apps.MainConfig',
@@ -154,3 +155,7 @@ LOGGING = {
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 GRAPPELLI_ADMIN_TITLE = "Project"
+
+GRAPHENE = {
+    "SCHEMA": "main.schema.schema"
+}

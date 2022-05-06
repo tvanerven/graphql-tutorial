@@ -1,0 +1,28 @@
+query {
+  allIngredients {
+    id
+    name
+  }
+}
+
+query {
+  categoryByName(name: "Dairy") {
+    id
+    name
+    ingredients {
+      id
+      name
+    }
+  }
+}
+
+query {
+  allIngredients {
+    id
+    name
+    category {
+      id
+      name
+    }
+  }
+}

@@ -15,10 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from graphene_django.views import GraphQLView
+from rest_framework.routers import DefaultRouter
 
 from main import views
+
+router = DefaultRouter()
+router.register("category", views.CategoryViewSet, "category_viewset")
+router.register("ingredients", views.IngredientViewSet, "ingredient_viewset")
 
 urlpatterns = [
     path('', views.Home.as_view()),
     path('admin/', admin.site.urls),
-]
+    path("graphql", GraphQLView.as_view(graphiql=True)),
+] + router.urls

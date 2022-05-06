@@ -21,22 +21,10 @@ services:
       - .env:/${PROJECT_WORK_DIR}/.env
     ports:
       - ${WSGI_PORT}:${WSGI_PORT}
+    environment:
+      - PYTHONDONTWRITEBYTECODE:1
     depends_on:
       - database
-
-  frontend:
-    build:
-      context: frontend
-      dockerfile: Dockerfile
-    container_name: project_frontend
-#    command: yarn && yarn build && yarn start
-    command: sh /scripts/start-frontend.sh
-    volumes:
-      - ./frontend/project_frontend:/frontend
-    ports:
-      - "${FE_EXTERNAL_PORT}:${FE_INTERNAL_PORT}"
-    environment:
-      HOST: ${FE_HOST}
 
 volumes:
   postgres_data:
